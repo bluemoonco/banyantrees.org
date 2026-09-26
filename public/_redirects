@@ -1,0 +1,8 @@
+# Old Blogger URLs -> new home page (apex -> www is a Cloudflare Redirect Rule, not here)
+/index.html                                        /   301
+/2020/07/st-petersburg-florida-banyan-tree-farms.html  /   301
+/2020/*                                            /   301
+/p/*                                               /   301
+/search                                            /   301
+/search/*                                          /   301
+/feeds/*                                           /   301
