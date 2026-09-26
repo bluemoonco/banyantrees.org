@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <url>
-    <loc>https://www.banyantrees.org/</loc>
-    <lastmod>2026-09-26</lastmod>
-    <image:image><image:loc>https://www.banyantrees.org/assets/banyan-tree-urban-farm-1200.webp</image:loc></image:image>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.banyantrees.org/</loc></url>
+  <url><loc>https://www.banyantrees.org/young-banyan-trees/</loc></url>
+  <url><loc>https://www.banyantrees.org/specimen-trees/</loc></url>
+  <url><loc>https://www.banyantrees.org/for-professionals/</loc></url>
+  <url><loc>https://www.banyantrees.org/banyan-tree-care-tampa-bay/</loc></url>
+  <url><loc>https://www.banyantrees.org/our-approach/</loc></url>
+  <url><loc>https://www.banyantrees.org/consultation/</loc></url>
+  <url><loc>https://www.banyantrees.org/privacy/</loc></url>
 </urlset>

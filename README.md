@@ -1,47 +1,38 @@
-# banyantrees.org
+# The Banyan Tree Company
 
-Website for The Banyan Tree Company — urban banyan tree farm in St. Petersburg, FL. Migrated from Blogger to a static site on GitHub + Cloudflare Pages, keeping the original content and look (banyan-canopy masthead, white title, the "Urban Farm - St. Petersburg, FL" post and photo). The four spam comments on the Blogger post were not carried over.
+Static commercial site for `www.banyantrees.org`, deployed from `public/` through Cloudflare Pages. No JavaScript framework or package install is needed.
 
-No build step, no framework, no dependencies. Cloudflare Pages serves `public/` as-is.
+## Local preview
 
-## Deploy (Cloudflare Pages)
+```bash
+python3 build.py
+python3 -m http.server 8765 --directory public
+```
 
-Pages → Create → Connect to Git → `bluemoonco/banyantrees.org`
+Visit `http://localhost:8765/` and the interior routes. Cloudflare Pages project settings: framework **None**, no build command, output directory **public**, root directory `/`. Pushes to `main` deploy through the existing Git integration.
 
-| Setting | Value |
-|---|---|
-| Project name | `banyantrees-org` |
-| Framework preset | None |
-| Build command | *(leave empty)* |
-| Build output directory | `public` |
-| Root directory | `/` |
+## Inventory
 
-Every push to `main` deploys. Then:
+`data/inventory.json` is intentionally empty. The public collection says the available-tree list is being prepared. Add only actual trees with verified ID, common and scientific names, size, status and a photograph of that tree. Run `python3 build.py` and commit the generated HTML. Do not reuse the atmospheric banyan photograph for a sale listing.
 
-1. **Custom domains:** add `www.banyantrees.org` and `banyantrees.org`. Canonical is **www** (same as it was on Blogger).
-2. **Redirect Rule** (Rules → Redirect Rules): `banyantrees.org/*` → `https://www.banyantrees.org/${1}`, 301, keep query string.
-3. **Let the bots in:** AI Crawl Control → **off** "Block AI bots" and **off** Cloudflare's managed robots.txt. Leave Bot Fight Mode off.
-4. Remove the old Blogger DNS records (Google A/AAAA on the apex, `www` → `ghs.googlehosted.com`) so Pages can take over. The `haexonaxz3gq` CNAME is Google's Blogger domain-verification record; it can go once Blogger is retired.
+Example record:
 
-## After launch
+```json
+{"id":"BT-001","common_name":"Indian Banyan","scientific_name":"Ficus benghalensis","size":"15-gallon container","status":"Inquire","image":"/assets/actual-tree-BT-001.webp"}
+```
 
-- Google Search Console + Bing Webmaster Tools: verify the domain (DNS TXT), submit `https://www.banyantrees.org/sitemap.xml`.
-- IndexNow: key file `public/c335afc2284c9315c566e22f70a926c5.txt` is in place. Ping:
-  `https://api.indexnow.org/indexnow?url=https://www.banyantrees.org/&key=c335afc2284c9315c566e22f70a926c5`
-- In Blogger (Settings → Publishing), remove the custom domain so the old blog doesn't compete; optionally delete or set the blog to private.
+The example is a schema illustration, not available inventory. Review species suitability and local requirements before publishing it. The build fails for incomplete records.
 
-## Files
+## Inquiries
 
-| Path | Purpose |
-|---|---|
-| `public/index.html` | the whole site (one page) |
-| `public/404.html` | not-found page |
-| `public/assets/site.css` | styles (bump `?v=` in the HTML when changed) |
-| `public/assets/banyan-header.jpg` | original Blogger masthead image |
-| `public/assets/banyan-tree-urban-farm-*.webp` | post photo (800/1200 w) |
-| `public/assets/banyan-tree-company-og.jpg` | 1200×630 social share card |
-| `public/assets/favicon.svg`, `public/favicon.ico`, `public/apple-touch-icon.png` | icons |
-| `public/_headers`, `public/_redirects` | Cloudflare Pages headers + old Blogger URL redirects |
-| `public/robots.txt`, `public/sitemap.xml`, `public/llms.txt` | crawlers / AI assistants |
+The existing phone number, `727-644-9200`, is the live contact route. `/consultation/` prepares a project summary in the visitor's browser and offers a call link. It does **not** transmit or store inquiries. No cart or checkout exists. If an online form is added later, connect a tested backend with delivery monitoring, confirmation emails, spam protection and a revised privacy notice before changing the form language.
 
-Preview locally: `python3 -m http.server 8765 --directory public`
+## Deployment and migration
+
+- `public/_redirects` maps the old Blogger post to the commercial homepage.
+- `public/sitemap.xml` contains the new canonical pages.
+- `public/_headers` sets security and cache behavior.
+- `public/robots.txt` permits crawling.
+- Canonical host is `www`; the Cloudflare apex-to-www redirect must remain configured.
+
+After launch, test the live domain, legacy redirect, responsive layout, phone links, sitemap, favicon and Google Search Console indexing. The original banyan photo remains as brand atmosphere, never as inventory proof.
